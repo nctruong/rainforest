@@ -4,6 +4,6 @@ class Product < ActiveRecord::Base
 
   def price_in_dollars
     price_in_dollars = price_in_cents / 100.0
-    sprintf("%2f", price_in_dollars)
+    sprintf("%.2f", price_in_dollars)
   end
 end

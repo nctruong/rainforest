@@ -1,11 +1,11 @@
 <h1>Product</h1>
 
 <p>Product: <%= @product.name %></p>
-<p>Price: <%= @product.price_in_dollars %></p>
+<p>Price: $ <%= @product.price_in_dollars %></p>
 <p>Description: <%= @product.description %></p>
 
 <div>
-  <%= button_to 'Edit', edit_product_path(@product), method: :get %>
-  <%= button_to 'Delete', product_path(@product), method: :delete %>
-  <%= button_to 'Back', products_path, method: :get, data: {confirm: 'Are you sure?'} %>
+  <%= link_to 'Edit', edit_product_path(@product) %>
+  <%= link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
+  <%= link_to 'Back', products_path %>
 </div>

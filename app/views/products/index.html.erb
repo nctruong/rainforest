@@ -1,2 +1,23 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Products</h1>
+
+<%= link_to "New Product", new_product_path %>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @products.each_slice(3) do |products| %>
+    <tr>
+      <% products.each do |product| %>
+        <td style="padding: 30px">
+          <p>Name: <%= product.name %></p>
+          <p>Price: $ <%= product.price_in_dollars %></p>
+          <p>Description: <%= product.description %></p>
+          <%= link_to "Go to Product", product_path(product) %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
