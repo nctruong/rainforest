@@ -7,8 +7,10 @@
       <ul>
         <% @product.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
+  <% end %>
 
   <div>
     <%= f.label :name, 'Product' %> <br>
