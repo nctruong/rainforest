@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :get_product, only: [:show, :edit, :update, :destroy]
-  before_filter :ensure_logged_in, only: [:new, :edit]
 
   def index
     @products = Product.order(created_at: :desc)

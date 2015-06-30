@@ -6,6 +6,8 @@
 
       <ul>
         <% @product.errors.full_messages.each do |msg| %>
+          <% msg.gsub!(/^Name/, 'Product') %>
+          <% msg.gsub!(/^Price in cents/, 'Price') %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -18,7 +20,7 @@
   </div>
 
   <div>
-    <%= f.label :price_in_cents %> <br>
+    <%= f.label :price_in_cents, 'Price' %> <br>
     <%= f.text_field :price_in_cents %>
   </div>
 

@@ -1,9 +1,8 @@
 class Product < ActiveRecord::Base
   validates :description, :name, presence: true
-  validates :price_in_cents, numericality: {only_integer: true}
+  validates :price_in_cents, format: { with: /\A[+]?(\d+|\d+\.\d{2})\Z/, message: "is in the wrong format [ $ 0.00 ]" }
 
-  def price_in_dollars
-    price_in_dollars = price_in_cents / 100.0
-    sprintf("%.2f", price_in_dollars)
+  def formatted_price
+    sprintf("%.2f", price_in_cents)
   end
 end

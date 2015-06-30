@@ -13,7 +13,7 @@
       <% products.each do |product| %>
         <td style="padding: 30px">
           <p>Name: <%= product.name %></p>
-          <p>Price: $ <%= product.price_in_dollars %></p>
+          <p>Price: $ <%= product.formatted_price %></p>
           <p>Description: <%= product.description %></p>
           <%= link_to "Go to Product", product_path(product) %>
         </td>
