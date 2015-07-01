@@ -1,11 +1,15 @@
 class ProductsController < ApplicationController
   before_action :get_product, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_logged_in, only: [:new]
 
   def index
     @products = Product.order(created_at: :desc)
   end
 
   def show
+    if current_user
+      @review = @product.reviews.build
+    end
   end
 
   def new

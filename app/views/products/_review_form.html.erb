@@ -1,0 +1,22 @@
+<h4>New Review</h4>
+
+<%= form_for([@product, @review]) do |f| %>
+  <% if @review.errors.any? %>
+    <h4>Couldn't create user due to <%= pluralize(@user.errors.count, "error") %>:</h4>
+
+    <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :comment %> <br>
+    <%= f.text_area :comment %>
+  </div>
+
+  <%= f.submit "Upload" %>
+<% end %>
+
+

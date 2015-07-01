@@ -9,9 +9,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def return_path
+    session[:return_to] ||= request.referer
+  end
+
   def ensure_logged_in
     unless current_user
-      session[:return_to] ||= request.fullpath
+      session[:return_to] = request.fullpath
       redirect_to new_session_url, alert: "You need to be logged in to view this page"
     end
   end
