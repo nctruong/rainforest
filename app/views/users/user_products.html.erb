@@ -8,14 +8,14 @@
     <th></th>
     <th></th>
   </tr>
-  <% @user.products.each_slice(3) do |products| %>
+  <% @seller.merchandise.each_slice(3) do |merchandises| %>
     <tr>
-      <% products.each do |product| %>
+      <% merchandises.each do |merchandise| %>
         <td style="padding: 30px">
-          <p>Name: <%= product.product %></p>
-          <p>Price: $ <%= product.formatted_price %></p>
-          <p>Description: <%= product.description %></p>
-          <%= link_to "Details", product_path(product) %>
+          <p>Name: <%= merchandise.product %></p>
+          <p>Price: $ <%= merchandise.formatted_price %></p>
+          <p>Description: <%= merchandise.description %></p>
+          <%= link_to "Details", product_path(merchandise) %>
         </td>
       <% end %>
     </tr>

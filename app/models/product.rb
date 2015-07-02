@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
-  belongs_to :user
-  # has_many :users, through: :reviews
+  belongs_to :seller, class_name: "User"
+  has_many :users, through: :reviews
   # before_destroy { |product| Review.destroy_all "product_id = #{product.id}" }
 
   validates :description, :product, presence: true

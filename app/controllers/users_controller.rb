@@ -31,22 +31,22 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      redirect_to user_url(@user)
+    if @seller.update_attributes(user_params)
+      redirect_to user_url(@seller)
     else
       render :edit
     end
   end
 
   def destroy
-    @user.destroy
+    @seller.destroy
     session[:user_id] = nil
     redirect_to products_url
   end
 
   private
   def get_current_user
-    @user = User.find(current_user.id)
+    @seller = User.find(current_user.id)
   end
   def user_params
     params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)

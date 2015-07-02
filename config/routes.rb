@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'pages#home'
+
   resources :products do
     resources :reviews, only: [:show, :create, :destroy]
   end

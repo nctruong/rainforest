@@ -1,10 +1,10 @@
 <p>Product: <%= @product.product %></p>
 <p>Price: $ <%= @product.formatted_price %></p>
 <p>Description: <%= @product.description %></p>
-<em>Posted by: <%= @product.user.username %></em>
+<em>Posted by: <%= @product.seller.username %></em>
 
 <div>
-  <% if current_user == @product.user %>
+  <% if current_user == @product.seller %>
     <%= link_to 'Edit', edit_product_path(@product) %>
     <%= link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
   <% end %>
