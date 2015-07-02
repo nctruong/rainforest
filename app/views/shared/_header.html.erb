@@ -1,0 +1,27 @@
+<header>
+  <div>
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% elsif flash[:alert] %>
+      <%= flash[:alert] %>
+    <% end %>
+  </div>
+
+  <div>
+    <% if current_user %>
+      <p>Signed in as <%= current_user.first_name %> | <%= link_to "Profile", users_path %> | <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
+    <% else %>
+      <% if request.fullpath !~ /\/(sessions|users)(\/new)?/ %>
+        <p><%= link_to "Log In", new_session_path %> or <%= link_to "Sign Up", new_user_path %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <nav>
+    <h3>Menu</h3>
+    <ul>
+      <li><%= link_to "Products", products_path %></li>
+      <li>My Cart</li>
+    </ul>
+  </nav>
+</header>

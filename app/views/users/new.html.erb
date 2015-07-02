@@ -12,6 +12,21 @@
     </ul>
   <% end %>
 
+    <div>
+    <%= f.label :first_name, "First Name" %> <br>
+    <%= f.text_field :first_name %>
+  </div>
+
+    <div>
+    <%= f.label :last_name, "Last Name" %> <br>
+    <%= f.text_field :last_name %>
+  </div>
+
+    <div>
+    <%= f.label :username %> <br>
+    <%= f.text_field :username %>
+  </div>
+
   <div>
     <%= f.label :email %> <br>
     <%= f.text_field :email %>
@@ -27,6 +42,13 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
+  <div>
   <%= f.submit "Create Account" %>
+  </div>
 
 <% end %>
+
+<br><%= link_to "Back Home", products_path %>
+
+<!-- Bug: Goes to immediate back page with ':back' -->
+

@@ -1,9 +1,12 @@
-<p>Product: <%= @product.name %></p>
+<p>Product: <%= @product.product %></p>
 <p>Price: $ <%= @product.formatted_price %></p>
 <p>Description: <%= @product.description %></p>
+<em>Posted by: <%= @product.user.username %></em>
 
 <div>
-  <%= link_to 'Edit', edit_product_path(@product) %>
-  <%= link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
-  <%= link_to 'Back', products_path %>
+  <% if current_user == @product.user %>
+    <%= link_to 'Edit', edit_product_path(@product) %>
+    <%= link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
+  <% end %>
+  <%= link_to 'Back', :back %>
 </div>

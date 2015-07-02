@@ -1,19 +1,20 @@
 class SessionsController < ApplicationController
-  before_action :ensure_logged_out, :return_path, only: [:new]
+  before_action :ensure_logged_out, only: [:new]
 
   def new
+    session[:advance_to] ||= request.referer
+    # Bug: Since return_path does not overwrite, from 'New Product' -> Login (without logging in), back to 'View Product' -> 'Login' to comment,
+    # redirects to 'New Product'
+
+    # Bug Fix: Overwrite session[:advance_to] when loading 'Show Product'
   end
 
   def create
-    user = User.find_by(email: params[:email])
+    user = User.find_by(username: params[:username])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      if session[:return_to].nil?
-        redirect_to products_url, notice: "Welcome back!"
-      else
-        redirect_to session.delete(:return_to), notice: "Welcome back!"
-      end
+      redirect_to session.delete(:advance_to), notice: "Welcome back!"
     else
       flash.now[:alert] = "Invalid email or password"
       render :new

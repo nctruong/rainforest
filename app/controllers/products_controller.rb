@@ -1,12 +1,17 @@
 class ProductsController < ApplicationController
-  before_action :get_product, only: [:show, :edit, :update, :destroy]
+  before_action :get_product, only: [:show, :update, :destroy]
   before_action :ensure_logged_in, only: [:new]
 
   def index
+    advance_to_path
+    # work around for now for 'show'
+
     @products = Product.order(created_at: :desc)
   end
 
   def show
+    advance_to_path
+
     if current_user
       @review = @product.reviews.build
     end
@@ -17,7 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.build(product_params)
 
     if @product.save
       redirect_to products_url
@@ -27,11 +32,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if authorized(current_user)
+      get_product
+    else
+      redirect_to products_url
+    end
   end
 
   def update
     if @product.update_attributes(product_params)
-      redirect_to product_path(@product)
+      redirect_to product_url(@product)
     else
       render :edit
     end
@@ -39,15 +49,19 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path
+    redirect_to products_url
   end
 
   private
+  def authorized(user)
+    user == Product.find(params[:id]).user
+  end
+
   def get_product
     @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price_in_cents)
+    params.require(:product).permit(:product, :description, :price)
   end
 end

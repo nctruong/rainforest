@@ -1,0 +1,19 @@
+<h1>User Settings</h1>
+
+<%= link_to "Back", users_path %>
+
+<div>
+  <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+</div>
+
+<div>
+  <p>Username: <%= @user.username %></p>
+</div>
+
+<div>
+  <p>Email: <%= @user.email %></p>
+</div>
+
+<div>
+  <p><%= link_to "Delete Account", user_path(@user), style: "color: red", method: :delete, data: {confirm: 'Are you sure?'} %></p>
+</div>

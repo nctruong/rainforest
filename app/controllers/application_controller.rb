@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def return_path
-    session[:return_to] ||= request.referer
+  def advance_to_path
+    session[:advance_to] = request.fullpath
   end
 
   def ensure_logged_in
     unless current_user
-      session[:return_to] = request.fullpath
+      advance_to_path
       redirect_to new_session_url, alert: "You need to be logged in to view this page"
     end
   end
@@ -25,5 +25,4 @@ class ApplicationController < ActionController::Base
       redirect_to products_url
     end
   end
-
 end
