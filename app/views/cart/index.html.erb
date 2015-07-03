@@ -1,0 +1,7 @@
+<h1>My Cart</h1>
+
+<% if @cart_items %>
+  <%= render "cart_items" %>
+<% else %>
+  <p>There are no items in your cart.</p>
+<% end %>

@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   def get_current_user
     @seller = User.find(current_user.id)
   end
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end

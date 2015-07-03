@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def advance_to_path
-    session[:advance_to] = request.fullpath
+  def clear_path
+    session[:advance_to] = nil
   end
 
   def ensure_logged_in
     unless current_user
-      advance_to_path
+      session[:advance_to] = request.fullpath
       redirect_to new_session_url, alert: "You need to be logged in to view this page"
     end
   end

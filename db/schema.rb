@@ -11,15 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702161437) do
+ActiveRecord::Schema.define(version: 20150702190402) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.float    "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cart_items", ["product_id", "user_id"], name: "index_cart_items_on_product_id_and_user_id"
 
   create_table "products", force: :cascade do |t|
-    t.string   "product"
+    t.string   "name"
     t.text     "description"
     t.float    "price"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "bought?",     default: false
     t.integer  "seller_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "products", ["seller_id"], name: "index_products_on_seller_id"
@@ -32,14 +43,16 @@ ActiveRecord::Schema.define(version: 20150702161437) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "reviews", ["product_id", "user_id"], name: "index_reviews_on_product_id_and_user_id"
+
   create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
     t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "username"
   end
 
 end

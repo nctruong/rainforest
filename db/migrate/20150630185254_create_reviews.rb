@@ -7,5 +7,6 @@ class CreateReviews < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :reviews, [:product_id, :user_id]
   end
 end

@@ -1,7 +1,8 @@
-<p>Product: <%= @product.product %></p>
+<p>Product: <%= @product.name %></p>
 <p>Price: $ <%= @product.formatted_price %></p>
 <p>Description: <%= @product.description %></p>
 <em>Posted by: <%= @product.seller.username %></em>
+<p><%= link_to "Add to Cart", add_to_cart_product_path %></p>
 
 <div>
   <% if current_user == @product.seller %>

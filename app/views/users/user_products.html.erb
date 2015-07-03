@@ -12,7 +12,7 @@
     <tr>
       <% merchandises.each do |merchandise| %>
         <td style="padding: 30px">
-          <p>Name: <%= merchandise.product %></p>
+          <p>Name: <%= merchandise.name %></p>
           <p>Price: $ <%= merchandise.formatted_price %></p>
           <p>Description: <%= merchandise.description %></p>
           <%= link_to "Details", product_path(merchandise) %>

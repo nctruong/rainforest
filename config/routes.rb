@@ -4,12 +4,29 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews, only: [:show, :create, :destroy]
+
+    # /products/:id/add_to_cart
+    member do
+      get 'add_to_cart', to: "products#add_to_cart"
+    end
   end
 
-  match '/users/products', to: 'users#user_products', via: :get
+  get '/users/products', to: 'users#user_products'
+
   resources :users
 
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :cart_items, only: [:destroy]
+
+  resources :cart do
+    # /cart/checkout
+    collection do
+      get 'checkout', to: 'cart#checkout!'
+      post 'ship', to: 'cart#ship!'
+    end
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

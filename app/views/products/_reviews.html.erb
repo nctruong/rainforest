@@ -2,7 +2,7 @@
   <p>
     <%= review.comment %> <br>
     <% if review.user != nil %>
-      <em> by <%= review.user.email %></em> <br>
+      <em> by <%= review.user.username %></em> <br>
       Added on: <%= review.created_at %> <br>
     <% end %>
     <% if review.user == current_user %>
