@@ -17,16 +17,15 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :cart_items, only: [:destroy]
+  resources :cart_items, only: :destroy
 
-  resources :cart do
+  resources :cart, only: :index do
     # /cart/checkout
     collection do
-      get 'checkout', to: 'cart#checkout!'
-      post 'ship', to: 'cart#ship!'
+      get 'checkout', to: 'cart#checkout'
+      get 'order', to: 'cart#order'
     end
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

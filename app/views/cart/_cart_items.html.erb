@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <th style="width: 60%"></th>
-    <th style="width: 20%"></th>
-    <th style-"width: 10%"></th>
+    <th style="width: 300px"></th>
+    <th style="width: 100px"></th>
+    <th style-"width: 100px"></th>
   </tr>
   <% @cart_items.each do |item| %>
     <tr>
@@ -11,4 +11,10 @@
       <td><%= link_to "Remove", cart_item_path(item), method: :delete, data: { confirm: "Are you sure?" } %></td>
     </tr>
   <% end %>
+    <tr><td colspan="2" style="border-top: 1pt black solid"></td></tr>
+    <tr>
+      <td><p>Subtotal:</p></td>
+      <td><p>$ <%= subtotal = calculate(@cart_items, :unit_price) %></p></td>
+      <td><p><%= link_to "Checkout", checkout_cart_index_path %></p></td>
+    </tr>
 </table>

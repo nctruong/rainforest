@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th style="width: 300px"></th>
+    <th style="width: 100px"></th>
+    <th style-"width: 100px"></th>
+  </tr>
+  <% @cart_items.each do |item| %>
+    <tr>
+      <td><p><%= item.product.name %></p></td>
+      <td><p>$ <%= item.unit_price %></p></td>
+    </tr>
+  <% end %>
+  <tr><td colspan="2" style="border-top: 1pt black solid"></td></tr>
+  <tr>
+    <td><p>Subtotal:</p></td>
+    <td><p>$ <%= subtotal = calculate(@cart_items, :unit_price) %></p></td>
+  </tr>
+  <tr>
+    <td><p>Tax:</p></td>
+    <td><p>$ <%= tax = calculate(@cart_items, :tax) %></p></td>
+  </tr>
+  <tr>
+    <td><p>Total:</p></td>
+    <td><p>$ <%= sprintf('%.2f', subtotal.to_f + tax.to_f) %></p></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><p><%= link_to "Submit Order", order_cart_index_path %></p></td>
+  </tr>
+</table>

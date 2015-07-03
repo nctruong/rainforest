@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.float :price
-      t.boolean :bought?, default: false
       t.integer :seller_id
 
       t.timestamps null: false

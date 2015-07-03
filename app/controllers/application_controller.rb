@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
       redirect_to products_url
     end
   end
+
+  # Calculate Total, Subtotals, Tax
+  def calculate(items, method = :unit_price)
+    i = 0
+    items.each { |item| i += item.send method }
+    sprintf("%.2f", i)
+  end
+  helper_method :calculate
 end

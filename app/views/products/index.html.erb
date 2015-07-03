@@ -11,14 +11,12 @@
   <% @products.each_slice(3) do |products| %>
     <tr>
       <% products.each do |product| %>
-        <% if !product.bought? %>
-          <td style="padding: 30px">
-            <p>Name: <%= product.name %></p>
-            <p>Price: $ <%= product.formatted_price %></p>
-            <p>Description: <%= product.description %></p>
-            <%= link_to "Details", product_path(product) %>
-          </td>
-        <% end %>
+        <td style="padding: 30px">
+          <p>Name: <%= product.name %></p>
+          <p>Price: $ <%= product.formatted_price %></p>
+          <p>Description: <%= product.description %></p>
+          <%= link_to "Details", product_path(product) %>
+        </td>
       <% end %>
     </tr>
   <% end %>

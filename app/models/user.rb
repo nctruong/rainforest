@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :merchandise, class_name: "Product", foreign_key: "seller_id", dependent: :destroy
   has_many :products, through: :reviews
 
-  has_many :cart_items do
+  has_many :cart_items, dependent: :destroy do
     def add(product)
       cart_item = new(product: product)
       cart_item.unit_price = product.price

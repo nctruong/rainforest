@@ -13,15 +13,11 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    if !@product.bought?
-      if !in_cart(@product)
-        @cart_item = current_user.cart.add(@product)
-        redirect_to product_path(@product), notice: "#{ @product.name } was added to your cart."
-      else
-        redirect_to product_path(@product), alert: "#{ @product.name } already exists in your cart."
-      end
+    if !in_cart(@product)
+      @cart_item = current_user.cart.add(@product)
+      redirect_to product_path(@product), notice: "#{ @product.name } was added to your cart."
     else
-      redirect_to product_path(@product), alert: "Unfortunately, #{ @product.name } is no longer available."
+      redirect_to product_path(@product), alert: "#{ @product.name } already exists in your cart."
     end
   end
 
