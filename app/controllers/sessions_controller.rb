@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to session.delete(:advance_to), notice: "Welcome back!"
     else
-      flash.now[:alert] = "Invalid email or password"
+      flash.now[:alert] = "Invalid username or password"
       render :new
     end
   end
