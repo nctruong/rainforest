@@ -37,12 +37,15 @@ class ButtonsController < ApplicationController
   end
 
   private
-
   def access_token
     @@access_token ||= nil
   end
 
   def registered?(id)
     Button.exists?(core_id: id)
+  end
+
+  def button(id)
+    RubySpark::Core.new(id, @@access_token)
   end
 end
