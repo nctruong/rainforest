@@ -13,7 +13,15 @@ Rails.application.routes.draw do
 
   get '/users/products', to: 'users#user_products'
 
-  resources :users
+  resources :users do
+    resources :buttons do
+      collection do
+        get '/login', to: 'buttons#login'
+        post '/authenticate', to: 'buttons#authenticate'
+        get '/logout', to: 'buttons#logout'
+      end
+    end
+  end
 
   resources :sessions, only: [:new, :create, :destroy]
 

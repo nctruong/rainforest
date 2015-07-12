@@ -1,0 +1,33 @@
+<h1>My Rainforest Dash Buttons</h1>
+
+<% if not_authenticated? @access_token %>
+
+  <%= link_to "Authenticate", login_user_buttons_path %>
+
+<% else %>
+
+  <%= link_to "Save Buttons", logout_user_buttons_path %>
+
+  <% @my_buttons.each do |button| %>
+    <div>
+      <p>Name: <%= button["name"] %></p> <br>
+
+      <% unless registered? button["id"] %>
+
+        <%= form_tag user_buttons_path do %>
+          <%= hidden_field_tag :core_id, button["id"] %>
+          <%= submit_tag "Add" %>
+        <% end %>
+
+      <% else %>
+        <% if get_button(button).product.nil? %>
+          <%= link_to "Tag it to a product!", products_path %>
+        <% else %>
+          <%= link_to "Go to product", product_path(button.product) %>
+        <% end %>
+      <% end %>
+
+    </div>
+  <% end %>
+
+<% end %>

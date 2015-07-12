@@ -1,4 +1,5 @@
 <h1>Hi, <%= @seller.first_name %></h1>
 
 <%= link_to "My Products", users_products_path %> <br>
+<%= link_to "My Buttons", user_buttons_path(@seller) %> <br>
 <%= link_to "User Settings", user_path(@seller) %>

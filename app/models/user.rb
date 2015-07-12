@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
-  has_many :merchandise, class_name: "Product", foreign_key: "seller_id", dependent: :destroy
   has_many :products, through: :reviews
+
+  has_many :merchandise, class_name: "Product", foreign_key: "seller_id", dependent: :destroy
+
+  has_many :buttons, dependent: :destroy
+  has_many :orders, through: :buttons, source: :product
 
   has_many :cart_items, dependent: :destroy do
     def add(product)
@@ -17,4 +21,5 @@ class User < ActiveRecord::Base
   validates :username, :email, uniqueness: { message: "is already in use" }
 
   has_secure_password
+
 end

@@ -33,4 +33,9 @@ class ApplicationController < ActionController::Base
     sprintf("%.2f", i)
   end
   helper_method :calculate
+
+  def registered?(id)
+    Button.exists?(core_id: id)
+  end
+  helper_method :registered?
 end
