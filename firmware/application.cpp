@@ -59,7 +59,8 @@ void loop() {
   // to check if state changed (button was pressed)
   if (reading == 1 && previous_reading == 0 && millis() - toggled_time > debounce) {
     Serial.println("Added to cart");
-
+    Serial.println(post);
+    
     int statusCode = client.post("/products/button_order", post);
     Serial.println(statusCode);
 
