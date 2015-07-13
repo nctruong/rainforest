@@ -61,7 +61,7 @@ void loop() {
     Serial.println("Added to cart");
     Serial.println(post);
 
-    int statusCode = client.post("/products/button_order", "core_id=54ff71066678574924590267");
+    int statusCode = client.get("/products/button_order?core_id=54ff71066678574924590267");
     Serial.println(statusCode);
 
     toggled_time = millis();

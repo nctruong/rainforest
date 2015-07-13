@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
       product = Product.find(button.product_id)
       user.cart.add(product)
       core.function("cartResponse", "success")
-      rediret_to products_url, notice: "Item added to cart successfully with your button!"
+      redirect_to products_url, notice: "Item added to cart successfully with your button!"
     end
   end
 
