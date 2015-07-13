@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
 
     collection do
-      post 'button_order', to: "products#button_order"
+      get 'button_order', to: "products#button_order"
     end
   end
 
