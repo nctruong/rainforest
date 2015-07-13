@@ -15,10 +15,11 @@ ActiveRecord::Schema.define(version: 20150710180554) do
 
   create_table "buttons", force: :cascade do |t|
     t.string   "core_id"
+    t.string   "access_token"
     t.integer  "user_id"
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "buttons", ["user_id", "product_id"], name: "index_buttons_on_user_id_and_product_id"

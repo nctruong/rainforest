@@ -23,6 +23,24 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_to_button
+    button = Button.find(params[:id])
+    button.update_attributes(product_id: params[:product_id])
+    redirect_to login_user_buttons_url(current_user), notice: "Button was tagged successfully"
+  end
+
+  def button_order
+    button = Button.find_by(core_id: params[:core_id])
+
+    if button
+      core = RubySpark::Core.new(button.core_id, button.access_token)
+      user = User.find(button.user_id)
+      product = Product.find(button.product_id)
+      user.cart.add(product)
+      core.function("cartResponse", "success")
+    end
+  end
+
   def new
     @product = Product.new
   end

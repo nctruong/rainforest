@@ -20,8 +20,9 @@
         <% end %>
 
       <% else %>
-        <% if get_button(button).product.nil? %>
-          <%= link_to "Tag it to a product!", products_path %>
+        <% button = get_button(button) %>
+        <% if button.product.nil? %>
+          <%= link_to "Tag it to a product!", products_user_button_path(current_user, button) %>
         <% else %>
           <%= link_to "Go to product", product_path(button.product) %>
         <% end %>

@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     # /products/:id/add_to_cart
     member do
       get 'add_to_cart', to: "products#add_to_cart"
+      post 'add_to_button', to: "products#add_to_button"
+    end
+
+    collection do
+      post 'button_order', to: "products#button_order"
     end
   end
 
@@ -15,10 +20,14 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :buttons do
+      member do
+        get 'products', to: 'buttons#products'
+      end
+
       collection do
-        get '/login', to: 'buttons#login'
-        post '/authenticate', to: 'buttons#authenticate'
-        get '/logout', to: 'buttons#logout'
+        get 'login', to: 'buttons#login'
+        post 'authenticate', to: 'buttons#authenticate'
+        get 'logout', to: 'buttons#logout'
       end
     end
   end

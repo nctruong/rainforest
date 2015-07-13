@@ -6,6 +6,10 @@ class ButtonsController < ApplicationController
     @my_buttons = HTTParty.get('https://api.particle.io/v1/devices', query: {access_token: @access_token})
   end
 
+  def products
+    @products = Product.where.not(seller: current_user).order(created_at: :desc)
+  end
+
   def login
   end
 
@@ -21,7 +25,7 @@ class ButtonsController < ApplicationController
   end
 
   def create
-    @button = current_user.buttons.build(core_id: params[:core_id])
+    @button = current_user.buttons.build(core_id: params[:core_id], access_token: @@access_token)
     @button.user = current_user
 
     if @button.save
@@ -43,9 +47,5 @@ class ButtonsController < ApplicationController
 
   def registered?(id)
     Button.exists?(core_id: id)
-  end
-
-  def button(id)
-    RubySpark::Core.new(id, @@access_token)
   end
 end

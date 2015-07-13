@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_action :ensure_logged_in
   before_action :get_cart
 
   def index
