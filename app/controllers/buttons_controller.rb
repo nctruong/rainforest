@@ -26,7 +26,6 @@ class ButtonsController < ApplicationController
 
   def create
     @button = current_user.buttons.new(core_id: params[:core_id], access_token: @@access_token)
-    @button.user = current_user
 
     if @button.save
       redirect_to user_buttons_url, notice: "Button added successfully"
