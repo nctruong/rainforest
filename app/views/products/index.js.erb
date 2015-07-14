@@ -1,0 +1,4 @@
+$('#products').html('<tr><%= escape_javascript(render @products) %></tr>');
+
+// refactored from above
+// $('#products').html('<%= j(render @products) %>');

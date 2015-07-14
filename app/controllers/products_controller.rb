@@ -5,7 +5,31 @@ class ProductsController < ApplicationController
   def index
     clear_path
 
-    @products = Product.order(created_at: :desc)
+    @products = if params[:search]
+      Product.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+    else
+      Product.order(created_at: :desc)
+    end
+
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render @products
+        else
+          render :index
+        end
+      end
+
+      format.js do
+        render :index
+      end
+    end
+
+    # refactored from above
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show

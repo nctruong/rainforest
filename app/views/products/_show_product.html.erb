@@ -1,0 +1,15 @@
+<p>Product: <%= @product.name %></p>
+<p>Price: $ <%= @product.formatted_price %></p>
+<p>Description: <%= @product.description %></p>
+<em>Posted by: <%= @product.seller.username %></em>
+<% if !current_user.merchandise.exists?(@product) %>
+  <p><%= link_to "Add to Cart", add_to_cart_product_path %></p>
+<% end %>
+
+<div>
+  <% if current_user == @product.seller %>
+    <%= link_to 'Edit', edit_product_path(@product) %>
+    <%= link_to 'Delete', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
+  <% end %>
+  <%= link_to 'Back', :back %>
+</div>
