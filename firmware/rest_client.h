@@ -1,11 +1,11 @@
 /**
  ******************************************************************************
  * @file    rest_client.h
- * 
+ *
  * details: https://github.com/llad/spark-restclient
- * 
+ *
  * credit: https://github.com/csquared/arduino-restclient
- * 
+ *
  ******************************************************************************
 
 */
@@ -16,7 +16,7 @@
 class RestClient {
 
   public:
-    RestClient(const char* host);
+    RestClient(const char* _host);
     RestClient(const char* _host, int _port);
 
     //Client Setup

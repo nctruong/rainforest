@@ -1,1 +1,17 @@
-_product.html.erb
+<% if product_counter != 0 && product_counter % 3 == 0 %>
+  </tr>
+  <tr>
+    <td style="padding: 30px">
+      <p>Name: <%= product.name %></p>
+      <p>Price: $ <%= product.formatted_price %></p>
+      <p>Description: <%= product.description %></p>
+      <%= link_to "Details", product_path(product) %>
+    </td>
+<% else %>
+  <td style="padding: 30px">
+    <p>Name: <%= product.name %></p>
+    <p>Price: $ <%= product.formatted_price %></p>
+    <p>Description: <%= product.description %></p>
+    <%= link_to "Details", product_path(product) %>
+  </td>
+<% end %>
