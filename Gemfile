@@ -27,6 +27,12 @@ gem 'bcrypt', '~> 3.1.7'
 # Spark Core Integration
 gem 'ruby_spark'
 
+# Pagination
+gem 'kaminari'
+
+# Fake name generator
+gem 'faker'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

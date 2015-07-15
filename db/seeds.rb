@@ -10,6 +10,17 @@ User.create!(first_name: 'Test', last_name: 'One', email: 'test@one.com', userna
 User.create!(first_name: 'Test', last_name: 'Two', email: 'test@two.com', username: 'test2', password: '1234')
 Product.create!(name: 'Apple', price: 2.99, description: 'Crunchy', seller: User.first)
 Product.create!(name: 'Pear', price: 2.99, description: 'Sweet', seller: User.find(2))
+
+20.times do
+  Product.create!(
+    name: Faker::Company.catch_phrase,
+    description: "#{Faker::Company.bs}",
+    price: rand(100),
+    seller: User.first
+  )
+end
+
+
 Review.create!(comment: 'Nice!', product: Product.first, user: User.find(2))
 Review.create!(comment: 'Cool!', product: Product.find(2), user: User.first)
 CartItem.create!(product_id: 1, user_id: 1, unit_price: Product.first.price)
