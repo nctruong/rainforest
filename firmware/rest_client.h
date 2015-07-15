@@ -16,7 +16,7 @@
 class RestClient {
 
   public:
-    RestClient(const char* _host);
+    RestClient(const char* host);
     RestClient(const char* _host, int _port);
 
     //Client Setup
