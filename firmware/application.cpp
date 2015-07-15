@@ -1,13 +1,11 @@
+/*#include "rest_client.h"*/
 #include "application.h"
-#include "rest_client.h"
 #include <string.h>
 #include <time.h>
 #include <math.h>
 
 #define IN_PIN   D3 // button
 #define OUT_PIN  D7 // led
-
-RestClient client = RestClient("rainforest-bitmaker.herokuapp.com");
 
 int state = 0; // state of output pin
 int reading; // input from inPin
@@ -61,8 +59,70 @@ void loop() {
     Serial.println("Added to cart");
     Serial.println(post);
 
-    int statusCode = client.get("/products/button_order?core_id=54ff71066678574924590267");
-    Serial.println(statusCode);
+    int num_headers;
+    const char* headers[10];
+    boolean contentTypeSet;
+
+    TCPClient client;
+    byte ip[] = {54,225,135,93};
+    String response = "";
+
+    if(client.connect(ip, 80)){
+      /*HTTP_DEBUG_PRINT("HTTP: connected\n");*/
+      /*HTTP_DEBUG_PRINT("REQUEST: \n");*/
+      // Make a HTTP request line:
+      client.print("POST");
+      client.print(" ");
+      client.print("/products/button_order");
+      client.print(" HTTP/1.1\r\n");
+      for(int i=0; i<num_headers; i++){
+        client.print(headers[i]);
+        client.print("\r\n");
+      }
+      client.print("Host: ");
+      client.print("rainforest-bitmaker.herokuapp.com");
+      client.print("\r\n");
+      client.print("Connection: close\r\n");
+
+      if(post != NULL){
+        char contentLength[30];
+        sprintf(contentLength, "Content-Length: %d\r\n", strlen(post));
+        client.print(contentLength);
+
+        if(!contentTypeSet){
+          client.print("Content-Type: application/x-www-form-urlencoded\r\n");
+        }
+      }
+
+      client.print("\r\n");
+
+      if(post != NULL){
+        client.print(post);
+        client.print("\r\n");
+        client.print("\r\n");
+      }
+
+      //make sure you write all those bytes.
+      delay(100);
+
+      /*HTTP_DEBUG_PRINT("HTTP: call readResponse\n");*/
+      /*int statusCode = readResponse(&response);*/
+      /*HTTP_DEBUG_PRINT("HTTP: return readResponse\n");*/
+
+      //cleanup
+      /*HTTP_DEBUG_PRINT("HTTP: stop client\n");*/
+      num_headers = 0;
+      client.stop();
+      delay(50);
+      /*HTTP_DEBUG_PRINT("HTTP: client stopped\n");*/
+      Serial.println("success");
+    }else{
+      /*HTTP_DEBUG_PRINT("HTTP Connection failed\n");*/
+      Serial.println("connection fail");
+    }
+
+    /*int statusCode = client.request("POST", "/products/button_order", post);
+    Serial.println(statusCode);*/
 
     toggled_time = millis();
   }

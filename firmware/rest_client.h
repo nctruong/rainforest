@@ -1,11 +1,11 @@
 /**
  ******************************************************************************
  * @file    rest_client.h
- * 
+ *
  * details: https://github.com/llad/spark-restclient
- * 
+ *
  * credit: https://github.com/csquared/arduino-restclient
- * 
+ *
  ******************************************************************************
 
 */

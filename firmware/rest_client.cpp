@@ -1,15 +1,15 @@
 /**
  ******************************************************************************
  * @file    rest_client.cpp
- * 
+ *
  * details: https://github.com/llad/spark-restclient
- * 
+ *
  * credit: https://github.com/csquared/arduino-restclient
- * 
+ *
  ******************************************************************************
 
 */
-
+#define HTTP_DEBUG
 #include "rest_client.h"
 
 #ifdef HTTP_DEBUG
