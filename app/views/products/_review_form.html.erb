@@ -1,6 +1,6 @@
 <h4>New Review</h4>
 
-<%= form_for([@product, @review], remote: true) do |f| %>
+<%= form_for [@product, @review], remote: true do |f| %>
   <% if @review.errors.any? %>
     <h4>Couldn't create user due to <%= pluralize(@user.errors.count, "error") %>:</h4>
 

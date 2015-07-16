@@ -32,6 +32,7 @@ class ProductsController < ApplicationController
 
   def show
     @review = Review.new(product: @product)
+    @reviews = @product.reviews.order(created_at: :asc)
   end
 
   def add_to_cart

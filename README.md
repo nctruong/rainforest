@@ -1,2 +1,2 @@
 # rainforest
-Bitmaker Labs (Week 4) - An Amazon clone built with Ruby on Rails, implementing Active Record associations, user authentication, AJAX, and the Spark Core as a DIY "Amazon Dash Button" (add items to cart with a button press)
+Bitmaker Labs (Week 4) - An Amazon clone built with Ruby on Rails, implementing Active Record associations, user authentication, AJAX, and the Spark Core as a DIY "Amazon Dash Button" (an IoT button enabling users to add items to their cart)

@@ -1,7 +1,5 @@
-// $(document).on('ready page:load', function() {
 $(document).on('ready', function() {
-// $(function() {
-  console.log("page ready fire!!!")
+
   // event argument refers to event handler, 'submit' in this case
   $('#search-form').on('submit', function(e) {
     e.preventDefault()

@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @product.reviews.build(review_params)
+    @review = @product.reviews.new(review_params)
     @review.user = current_user
 
     respond_to do |format|
