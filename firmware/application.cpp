@@ -59,8 +59,8 @@ void loop() {
     Serial.println("Added to cart");
     Serial.println(post);
 
-    int num_headers;
-    const char* headers[10];
+    // int num_headers = 0;
+    // const char* headers[10];
     boolean contentTypeSet;
 
     TCPClient client;
@@ -75,10 +75,10 @@ void loop() {
       client.print(" ");
       client.print("/products/button_order");
       client.print(" HTTP/1.1\r\n");
-      for(int i=0; i<num_headers; i++){
-        client.print(headers[i]);
-        client.print("\r\n");
-      }
+      // for(int i=0; i<num_headers; i++){
+      //   client.print(headers[i]);
+      //   client.print("\r\n");
+      // }
       client.print("Host: ");
       client.print("rainforest-bitmaker.herokuapp.com");
       client.print("\r\n");

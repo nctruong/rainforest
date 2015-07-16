@@ -2,7 +2,7 @@
 <p>Price: $ <%= @product.formatted_price %></p>
 <p>Description: <%= @product.description %></p>
 <em>Posted by: <%= @product.seller.username %></em>
-<% if !current_user.merchandise.exists?(@product) %>
+<% if current_user && !current_user.merchandise.exists?(@product) %>
   <p><%= link_to "Add to Cart", add_to_cart_product_path %></p>
 <% end %>
 

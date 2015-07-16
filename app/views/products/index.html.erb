@@ -1,7 +1,5 @@
 <h1>Products</h1>
 
-<h3><%= page_entries_info @products %></h3>
-
 <div>
   <%= link_to "New Product", new_product_path %><br><br>
 </div>
@@ -16,4 +14,6 @@
   </tr>
 </table>
 
-<%= paginate @products %>
+<div class="pagination">
+  <%= paginate @products %>
+</div>

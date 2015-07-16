@@ -1,4 +1,3 @@
-$('#products').html('<tr><%= escape_javascript(render @products) %></tr>');
+$('#products').append('<tr><%= j(render @products) %></tr>');
+$('.pagination').replaceWith('<%= j(paginate @products) %>');
 
-// refactored from above
-// $('#products').html('<%= j(render @products) %>');

@@ -11,7 +11,7 @@ User.create!(first_name: 'Test', last_name: 'Two', email: 'test@two.com', userna
 Product.create!(name: 'Apple', price: 2.99, description: 'Crunchy', seller: User.first)
 Product.create!(name: 'Pear', price: 2.99, description: 'Sweet', seller: User.find(2))
 
-20.times do
+50.times do
   Product.create!(
     name: Faker::Company.catch_phrase,
     description: "#{Faker::Company.bs}",
