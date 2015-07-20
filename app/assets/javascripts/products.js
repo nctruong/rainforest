@@ -1,4 +1,4 @@
-$(document).on('ready', function() {
+$(document).on('ready page:load', function() {
 
   // event argument refers to event handler, 'submit' in this case
   $('#search-form').on('submit', function(e) {
@@ -22,10 +22,10 @@ $(document).on('ready', function() {
     //   method:'GET'
     // });
 
-    $('#products, .pagination').html("")
+    $('#products, .pagination').html("") // clears any loaded products prior to getting search results
     $.getScript('/products?search=' + searchValue)
   })
-
+})
 // Pagination procedure:
 // 1. When user scrolls near the bottom of the page
   // add a event listener to scroll value
@@ -33,6 +33,8 @@ $(document).on('ready', function() {
 // 2. Send an AJAX request to fetch next set
 // 3. Use the response to update the page
 // 4. Don't load more if user reaches end of the list
+$(document).on('ready', function() {
+
   function distance_from_bottom() {
     var w      = $(window)
     var bottom = w.scrollTop() + w.height()
@@ -57,6 +59,7 @@ $(document).on('ready', function() {
         locked = false
     }
   })
+})
 
 
     // if (distanceFromBottom <= 100 && nextPageUrl !== proposedNextPage && proposedNextPage !== undefined) {
@@ -71,5 +74,3 @@ $(document).on('ready', function() {
     //   // refactored from above and returned as
     //   $.getScript(nextPageUrl)
     // }
-
-})

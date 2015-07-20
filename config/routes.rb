@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     collection do
       get 'checkout', to: 'cart#checkout'
       get 'order', to: 'cart#order'
+      get 'delete', to: 'cart#delete'
     end
   end
 

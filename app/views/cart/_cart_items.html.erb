@@ -15,6 +15,6 @@
     <tr>
       <td><p>Subtotal:</p></td>
       <td><p>$ <%= subtotal = calculate(@cart_items, :unit_price) %></p></td>
-      <td><p><%= link_to "Checkout", checkout_cart_index_path %></p></td>
+      <td><p><%= link_to "Remove all", delete_cart_index_path, data: { confirm: "Are you sure?" } %> || <%= link_to "Checkout", checkout_cart_index_path %></p></td>
     </tr>
 </table>

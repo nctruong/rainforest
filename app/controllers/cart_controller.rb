@@ -8,13 +8,22 @@ class CartController < ApplicationController
   def checkout
   end
 
+  def delete
+    remove_all
+    redirect_to cart_index_path
+  end
+
   def order
-    @cart_items.each { |item| item.destroy }
+    remove_all
     redirect_to cart_index_path, notice: "Order has been shipped."
   end
 
   private
   def get_cart
     @cart_items = current_user.cart.all
+  end
+
+  def remove_all
+    @cart_items.each { |item| item.destroy }
   end
 end

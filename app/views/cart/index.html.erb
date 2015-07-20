@@ -1,6 +1,6 @@
 <h1>My Cart</h1>
 
-<% if @cart_items.exists? %>
+<% if @cart_items.any? %>
   <%= render "cart_items" %>
 <% else %>
   <p>There are no items in your cart.</p>
