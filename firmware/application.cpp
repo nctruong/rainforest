@@ -75,10 +75,12 @@ void loop() {
       client.print(" ");
       client.print("/products/button_order");
       client.print(" HTTP/1.1\r\n");
+
       // for(int i=0; i<num_headers; i++){
       //   client.print(headers[i]);
       //   client.print("\r\n");
       // }
+
       client.print("Host: ");
       client.print("rainforest-bitmaker.herokuapp.com");
       client.print("\r\n");

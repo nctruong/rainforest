@@ -54,14 +54,16 @@ class ProductsController < ApplicationController
 
   def button_order
     button = Button.find_by(core_id: params[:core_id])
+    core = RubySpark::Core.new(button.core_id, button.access_token)
 
-    if button
-      core = RubySpark::Core.new(button.core_id, button.access_token)
+    if core
       user = User.find(button.user_id)
       product = Product.find(button.product_id)
       user.cart.add(product)
+
       core.function("cartResponse", "success")
-      redirect_to products_url, notice: "Item added to cart successfully with your button!"
+    else
+      core.function("cartResponse", "error")
     end
   end
 
