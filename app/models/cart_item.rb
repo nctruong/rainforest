@@ -6,4 +6,8 @@ class CartItem < ActiveRecord::Base
     tax = unit_price * 0.13
     tax
   end
+
+  def formatted_price
+    sprintf("%.2f", unit_price)
+  end
 end
